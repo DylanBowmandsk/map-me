@@ -6,12 +6,22 @@ import SetMarker from "./SetMarker"
 const Map = () => {
 
     const [markers, setMarkers] = useState([])
+    const [lat, setLat] = useState()
+    const [long, setLong] = useState()
+
+    useEffect(() =>{
+        navigator.geolocation.getCurrentPosition(position => {
+            setLat(position.coords.latitude)
+            setLong(position.coords.longitude)
+        })
+
+    })
     
     return (
         <div id="map">
 
-            <MapContainer  center={[51.509865, -0.118092]} zoom={14} scrollWheelZoom={false}>
-                <FindMe />
+            {long && lat && <MapContainer  center={[lat, long]} zoom={14} scrollWheelZoom={false}>
+                
                 <SetMarker markers={markers} setMarkers={setMarkers}/>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -26,7 +36,7 @@ const Map = () => {
                         </div>
                     )
                 })}
-            </MapContainer>
+            </MapContainer>}
 
         </div>
     )
