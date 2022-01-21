@@ -3,6 +3,10 @@ import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from 'reac
 import FindMe from "./FindMe"
 import SetMarker from "./SetMarker"
 
+const Loading = () =>{
+    return <h1 className='mx-auto'>Shits Loading</h1>
+}
+
 const Map = () => {
 
     const [markers, setMarkers] = useState([])
@@ -14,29 +18,28 @@ const Map = () => {
             setLat(position.coords.latitude)
             setLong(position.coords.longitude)
         })
-
-    })
+    },[])
     
     return (
         <div id="map">
-
-            {long && lat && <MapContainer  center={[lat, long]} zoom={14} scrollWheelZoom={false}>
-                
+            {long && lat && <MapContainer  center={[lat, long]} zoom={14} scrollWheelZoom={false}>  
                 <SetMarker markers={markers} setMarkers={setMarkers}/>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {markers && markers.map((x, key) => {
+                {markers && markers.map((pos, key) => {
                     return (
                         <div key={key}>
-                            <Marker position={x}>
+                            <Marker position={pos}>
                                 
                             </Marker>
                         </div>
                     )
                 })}
             </MapContainer>}
+            {!long && !lat && <Loading/>}
+            
 
         </div>
     )
