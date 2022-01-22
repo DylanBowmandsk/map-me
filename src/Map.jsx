@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from 'react-leaflet'
-import FindMe from "./FindMe"
 import SetMarker from "./SetMarker"
 
 const Loading = () =>{
@@ -22,7 +21,7 @@ const Map = () => {
     
     return (
         <div id="map">
-            {long && lat && <MapContainer  center={[lat, long]} zoom={14} scrollWheelZoom={false}>  
+            {long && lat && <MapContainer center={[lat, long]} zoom={14} scrollWheelZoom={false}>  
                 <SetMarker markers={markers} setMarkers={setMarkers}/>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -31,8 +30,10 @@ const Map = () => {
                 {markers && markers.map((pos, key) => {
                     return (
                         <div key={key}>
-                            <Marker position={pos}>
-                                
+                            <Marker position={[pos.lat,pos.lng]}>
+                                <Popup>
+                                    <textarea placeholder="type your message here"></textarea>
+                                </Popup>
                             </Marker>
                         </div>
                     )
