@@ -6,7 +6,7 @@ const SetMarker = ({markers, setMarkers}) => {
     let temp = markers.slice()
     temp.push({lat: e.latlng.lat,
                 lng:e.latlng.lng,
-                body: "test}"})
+                body: "test"})
     setMarkers(temp)
     })
     return null

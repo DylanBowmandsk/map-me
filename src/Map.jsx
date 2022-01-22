@@ -27,12 +27,13 @@ const Map = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {markers && markers.map((pos, key) => {
+                {markers && markers.map((marker, key) => {
                     return (
                         <div key={key}>
-                            <Marker position={[pos.lat,pos.lng]}>
+                            <Marker position={[marker.lat,marker.lng]}>
                                 <Popup>
-                                    <textarea placeholder="type your message here"></textarea>
+                                    <input onChange={(e) => marker.body = e.target.value  } placeholder="type your message here"></input>
+                                    {console.log(markers)}
                                 </Popup>
                             </Marker>
                         </div>
