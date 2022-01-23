@@ -1,3 +1,5 @@
+backend/dbconnectstring.js
+
 # Logs
 logs
 *.log
