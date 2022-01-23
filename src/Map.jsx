@@ -33,7 +33,6 @@ const Map = () => {
                             <Marker position={[marker.lat,marker.lng]}>
                                 <Popup>
                                     <input onChange={(e) => marker.body = e.target.value  } placeholder="type your message here"></input>
-                                    {console.log(markers)}
                                 </Popup>
                             </Marker>
                         </div>

@@ -10,7 +10,7 @@ const markerSchema = new Schema({
   body: String,
 });
 
-const Markers = mongoose.model("markers", markerSchema)
+const Marker = mongoose.model("markers", markerSchema)
 exports.addMarker = (lat,lng) => {
     marker = new Marker({
         lat: lat,
