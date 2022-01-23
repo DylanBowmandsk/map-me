@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from 'react-leaflet'
-import { getMarkers } from './apiController'
+import { getMarkers, setMarkerText } from './apiController'
 import SetMarker from "./SetMarker"
 
 const Loading = () =>{
@@ -34,7 +34,8 @@ const Map = () => {
                         <div key={key}>
                             <Marker position={[marker.lat,marker.lng]}>
                                 <Popup>
-                                    <input onChange={(e) => marker.body = e.target.value  } placeholder="type your message here"></input>
+                                    <input onChange={(e) => setMarkerText(marker._id,e.target.value,setMarkers)} placeholder="type your message here"></input>
+                                    <p>{marker.body}</p>
                                 </Popup>
                             </Marker>
                         </div>

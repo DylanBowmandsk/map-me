@@ -13,7 +13,7 @@ const markerSchema = new Schema({
 const Marker = mongoose.model("markers", markerSchema)
 
 exports.addMarker = (lat,lng) => {
-    marker = new Marker({
+    let marker = new Marker({
         lat: lat,
         lng: lng,
     })
@@ -23,4 +23,11 @@ exports.addMarker = (lat,lng) => {
 
 exports.returnAll = () => {
     return Marker.find()
+}
+
+exports.setMarkerText = async (id, body) => {
+    let marker = await Marker.findOne({_id: id})
+    marker.body = body
+    marker.save().then(response => console.log(response))
+    
 }

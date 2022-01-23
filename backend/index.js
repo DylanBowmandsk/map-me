@@ -23,6 +23,10 @@ app.post("/addmarker", (req, res) => {
   db.addMarker(req.body.lat,req.body.lng).then(data => res.send(data))
 })
 
+app.post("/setmarkertext", (req, res) => {
+  db.setMarkerText(req.body._id,req.body.body)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
