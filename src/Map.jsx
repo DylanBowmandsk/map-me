@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from 'react-leaflet'
+import { getMarkers } from './apiController'
 import SetMarker from "./SetMarker"
 
 const Loading = () =>{
@@ -16,6 +17,7 @@ const Map = () => {
         navigator.geolocation.getCurrentPosition(position => {
             setLat(position.coords.latitude)
             setLong(position.coords.longitude)
+            getMarkers(setMarkers)
         })
     },[])
     

@@ -20,7 +20,7 @@ app.get("/find", (req, res) => {
 })
 
 app.post("/addmarker", (req, res) => {
-  db.addMarker(req.body.lat,req.body.lng)
+  db.addMarker(req.body.lat,req.body.lng).then(data => res.send(data))
 })
 
 app.listen(port, () => {
